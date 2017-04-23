@@ -1,0 +1,14 @@
+version: '2'
+services:
+  python:
+    image: python:2
+    container_name: python
+    volumes:
+      - ~/data/python:/usr/src/myapp
+    working_dir: /usr/src/myapp
+  python3:
+    image: python:3.6
+    container_name: python3
+    volumes:
+      - ~/data/python:/usr/src/myapp
+    working_dir: /usr/src/myapp

@@ -1,0 +1,27 @@
+version: '2'
+services:
+    zookeeper:
+        image: jplock/zookeeper
+        ports:
+            - "3888:3888"
+            - "2888:2888"
+            - "2181:2181"
+        container_name: zookeeper
+    solr1:
+        image: solr:6.1
+        user: solr
+        ports:
+            - "8983:8983"
+        links:
+            - "zookeeper:ZK"
+        command: /opt/solr/bin/solr start -f -z zookeeper:2181
+        container_name: solr1
+    solr2:
+        image: solr:6.1
+        user: solr
+        ports:
+            - "8984:8983"
+        links:
+            - "zookeeper:ZK"
+        command: /opt/solr/bin/solr start -f -z zookeeper:2181
+        container_name: solr2

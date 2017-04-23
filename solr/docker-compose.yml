@@ -1,0 +1,34 @@
+version: '2'
+services:
+    solr:
+        image: solr:6
+        ports:
+            - "8983:8983"
+        mem_limit: 8g
+        entrypoint:
+            - /opt/solr/bin/solr
+            - start
+            - -f
+            - -V
+            - -m
+            - 4g
+            - -z
+            - zookeeper:2181
+        volumes:
+            - /etc/localtime:/etc/localtime
+        depends_on:
+            - zookeeper
+        networks:
+            - solr-backnet
+        container_name: solr
+    zookeeper:
+        image: zookeeper:3.4
+        restart: always
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=zookeeper:2888:3888
+        networks:
+            - solr-backnet
+networks:
+  solr-backnet:
+    driver: bridge

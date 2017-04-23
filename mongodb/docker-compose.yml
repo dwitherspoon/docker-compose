@@ -1,0 +1,12 @@
+version: '2'
+services:
+  MongoDB:
+    image: mongo
+    ports:
+    - 27017:27017
+    - 28017:28017
+    volumes:
+    - ~/data/mongodb:/data/db
+    - /etc/localtime:/etc/localtime
+    container_name: mongodb
+    command: --smallfiles

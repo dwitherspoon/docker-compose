@@ -1,0 +1,9 @@
+version: '2'
+services:
+    eureka:
+        image: springcloud/eureka:latest
+        ports:
+            - "8761:8761"
+        volumes:
+            - /etc/localtime:/etc/localtime
+        container_name: springcloud_eureka

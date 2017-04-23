@@ -1,0 +1,9 @@
+version: '2'
+services:
+    zookeeper:
+        image: jplock/zookeeper
+        ports:
+            - "3888:3888"
+            - "2888:2888"
+            - "2181:2181"
+        container_name: zookeeper
