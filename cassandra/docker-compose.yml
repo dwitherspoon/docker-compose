@@ -1,0 +1,9 @@
+version: '2'
+services:
+    cassandra:
+        image: cassandra:3
+        ports:
+            - "7000:7000"
+        volumes:
+            - /etc/localtime:/etc/localtime
+        container_name: cassandra
