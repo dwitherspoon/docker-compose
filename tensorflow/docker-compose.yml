@@ -1,7 +1,7 @@
 version: '2'
 services:
     tensorflow:
-        image: gcr.io/tensorflow/tensorflow:0.11.0rc0
+        image: tensorflow/tensorflow:latest
         ports:
             - "6006:6006"
             - "8888:8888"
