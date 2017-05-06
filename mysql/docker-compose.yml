@@ -1,11 +1,16 @@
-version: '2'
+version: '3'
 services:
-    MySQL:
-        image: mysql:5.7.11
-        ports:
-            - "27017:27017"
-        volumes:
-            - /usr/local/data/mongo:/datadb
-            - /etc/localtime:/etc/localtime
-        container_name: mongodb
-        command: --smallfiles
+  mysql:
+    image: mysql:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ~/data/mysql:/datadb
+      - /etc/localtime:/etc/localtime
+    container_name: mongodb
+    command: --smallfiles
+    networks:
+      - mysql-network
+networks:
+  mysql-network:
+    driver: bridge

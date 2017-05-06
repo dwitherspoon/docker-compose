@@ -1,12 +1,17 @@
-version: '2'
+version: '3'
 services:
-  MongoDB:
-    image: mongo
+  mongodb:
+    image: mongo:latest
     ports:
-    - 27017:27017
-    - 28017:28017
+      - "27017:27017"
+      - "28017:28017"
     volumes:
-    - ~/data/mongodb:/data/db
-    - /etc/localtime:/etc/localtime
+      - ~/data/mongodb:/data/db
+      - /etc/localtime:/etc/localtime
     container_name: mongodb
     command: --smallfiles
+    networks:
+      - mongodb-network
+networks:
+  mongodb-network:
+    driver: bridge

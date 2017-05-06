@@ -1,16 +1,12 @@
-version: '2'
+version: '3'
 services:
-    openstreetmaps:
-        image: homme/openstreetmap-tiles
-        ports:
-            - "5672:5672"
-            - "15672:15672"
-        environment:
-            - RABBITMQ_DEFAULT_USER=guest
-            - RABBITMQ_DEFAULT_PASS=guest
-        volumes:
-            - ~/data/rabbitmq:/var/lib/rabbitmq/mnesia
-            - /etc/localtime:/etc/localtime
-        container_name: rabbitmq
-        extra_hosts:
-            - "iss206328: 127.0.0.1"
+  openstreetmaps:
+    image: homme/openstreetmap-tiles
+    volumes:
+      - /etc/localtime:/etc/localtime
+    container_name: openstreetmaps
+    networks:
+      - openstreetmaps-network
+networks:
+  openstreetmaps-network:
+    driver: bridge

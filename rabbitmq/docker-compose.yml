@@ -1,6 +1,6 @@
 version: '2'
 services:
-    RabbitMQ:
+    rabbitmq:
         image: rabbitmq:3-management
         ports:
             - "5672:5672"
@@ -12,5 +12,8 @@ services:
             - ~/data/rabbitmq:/var/lib/rabbitmq/mnesia
             - /etc/localtime:/etc/localtime
         container_name: rabbitmq
-        extra_hosts:
-            - "iss206328: 127.0.0.1"
+        networks:
+            - rabbitmq-backnet
+networks:
+    rabbitmq-backnet:
+        driver: bridge

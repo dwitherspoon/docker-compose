@@ -1,9 +1,14 @@
-version: '2'
+version: '3'
 services:
-    zookeeper:
-        image: jplock/zookeeper
-        ports:
-            - "3888:3888"
-            - "2888:2888"
-            - "2181:2181"
-        container_name: zookeeper
+  zookeeper:
+    image: zookeeper:latest
+    ports:
+      - "3888:3888"
+      - "2888:2888"
+      - "2181:2181"
+    container_name: zookeeper
+    networks:
+      - zookeeper-network
+networks:
+  zookeeper-network:
+    driver: bridge

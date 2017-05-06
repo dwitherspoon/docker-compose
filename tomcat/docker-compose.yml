@@ -1,9 +1,14 @@
-version: '2'
+version: '3'
 services:
-    tomcat8:
-        image: tomcat:8-jre8
-        ports:
-            - "8080:8080"
-        volumes:
-            - /etc/localtime:/etc/localtime
-        container_name: tomcat8
+  tomcat:
+    image: tomcat:9
+    ports:
+      - "8080:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    container_name: tomcat
+    networks:
+      - tomcat-network
+networks:
+  tomcat-network:
+    driver: bridge

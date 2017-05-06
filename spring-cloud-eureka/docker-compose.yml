@@ -1,9 +1,15 @@
-version: '2'
+version: '3'
 services:
-    eureka:
-        image: springcloud/eureka:latest
-        ports:
-            - "8761:8761"
-        volumes:
-            - /etc/localtime:/etc/localtime
-        container_name: springcloud_eureka
+  eureka:
+    image: netflixoss/eureka:1.3.1
+    ports:
+      - "8761:8761"
+      - "8080:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    container_name: eureka
+    networks:
+      - eureka-network
+networks:
+  eureka-network:
+    driver: bridge

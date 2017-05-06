@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   python:
     image: python:2
@@ -6,9 +6,16 @@ services:
     volumes:
       - ~/data/python:/usr/src/myapp
     working_dir: /usr/src/myapp
+    networks:
+      - python-network
   python3:
-    image: python:3.6
+    image: python:latest
     container_name: python3
     volumes:
-      - ~/data/python:/usr/src/myapp
+      - ~/data/python3:/usr/src/myapp
     working_dir: /usr/src/myapp
+    networks:
+      - python-network
+networks:
+  python-network:
+    driver: bridge

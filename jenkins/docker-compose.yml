@@ -6,13 +6,11 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - /opt/david/jenkins:/var/jenkins_home
+      - ~/data/jenkins:/var/jenkins_home
       - /private/var/run/docker.sock:/var/run/docker.sock
     container_name: jenkins
-    dns:
-      - 8.8.8.8
-      - 172.20.0.65
-      - 172.20.0.40
-      - 172.16.10.24
-    extra_hosts:
-      - "stash.issinc.com:172.20.7.91"
+    networks:
+      - jenkins-network
+networks:
+  jenkins-network:
+    driver: bridge

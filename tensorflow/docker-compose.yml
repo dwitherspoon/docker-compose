@@ -1,11 +1,16 @@
-version: '2'
+version: '3'
 services:
-    tensorflow:
-        image: tensorflow/tensorflow:latest
-        ports:
-            - "6006:6006"
-            - "8888:8888"
-        volumes:
-            - /etc/localtime:/etc/localtime
-            - ~/david/machine-learning/tensorflow:/opt/analytics/tensorflow
-        container_name: tensorflow
+  tensorflow:
+    image: tensorflow/tensorflow:latest
+    ports:
+      - "6006:6006"
+      - "8888:8888"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ~/data/machine-learning/tensorflow:/opt/analytics/tensorflow
+    container_name: tensorflow
+    networks:
+      - tensorflow-network
+networks:
+  tensorflow-network:
+    driver: bridge
