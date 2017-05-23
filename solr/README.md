@@ -6,7 +6,7 @@ is no Solr user on the native system.
 
 ## Configuration
 volumes:
-    - ~/data/docker/solr-5.0.0:/opt/solr/server/solr
+    - ~/data/docker/solr:/opt/solr/server/solr
     
 ## Solr Cloud Docker
 Need to create the collection tweets:
