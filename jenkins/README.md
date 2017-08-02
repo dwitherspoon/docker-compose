@@ -10,5 +10,9 @@ http://localhost
 ```
 
 ## Login Credentials
+These values depend on what you have assigned during the setup process.
+
+```
 username: jenkins
 password: jenkins
+```
