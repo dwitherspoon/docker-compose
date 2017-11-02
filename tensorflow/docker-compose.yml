@@ -1,14 +1,23 @@
 version: '3'
 services:
   tensorflow:
-    image: tensorflow/tensorflow:latest
+    image: tensorflow/tensorflow:latest-py3
     ports:
       - "6006:6006"
       - "8888:8888"
     volumes:
       - /etc/localtime:/etc/localtime
       - ~/data/machine-learning/tensorflow:/opt/analytics/tensorflow
-    container_name: tensorflow
+    networks:
+      - tensorflow-network
+  tensorflowGoogle:
+    image: gcr.io/tensorflow/tensorflow
+    ports:
+      - "6006:6006"
+      - "8888:8888"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ~/data/machine-learning/tensorflow:/opt/analytics/tensorflow
     networks:
       - tensorflow-network
 networks:
