@@ -1,25 +1,26 @@
 version: '3'
+
+volumes:
+  solrdata1:
+
+networks:
+  solrnet1:
+
 services:
   solr:
-    image: solr:6
+    image: solr
     ports:
       - "8983:8983"
     entrypoint:
-      - /opt/solr/bin/solr
-      - start
-      - -f
-      - -V
-      - -m
-      - 4g
-      - -z
-      - zookeeper:2181
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore
     volumes:
-      - /etc/localtime:/etc/localtime
+      - solrdata1:/opt/solr/server/solr/mycores
     depends_on:
       - zookeeper
     networks:
-      - solr-backnet
-    container_name: solr
+      - solrnet1
   zookeeper:
     image: zookeeper:3.4
     restart: always
@@ -27,7 +28,4 @@ services:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zookeeper:2888:3888
     networks:
-      - solr-backnet
-networks:
-  solr-backnet:
-    driver: bridge
+      - solrnet1

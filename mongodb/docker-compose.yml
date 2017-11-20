@@ -1,4 +1,11 @@
 version: '3'
+
+volumes:
+  mongodbdata1:
+
+networks:
+  mongodbnet1:
+
 services:
   mongodb:
     image: mongo:latest
@@ -6,12 +13,7 @@ services:
       - "27017:27017"
       - "28017:28017"
     volumes:
-      - ~/data/mongodb:/data/db
-      - /etc/localtime:/etc/localtime
-    container_name: mongodb
+      - mongodbdata1:/data/db
     command: --smallfiles
     networks:
-      - mongodb-network
-networks:
-  mongodb-network:
-    driver: bridge
+      - mongodbnet1
